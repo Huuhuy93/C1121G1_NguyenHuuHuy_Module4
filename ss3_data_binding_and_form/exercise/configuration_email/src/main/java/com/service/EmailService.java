@@ -23,6 +23,7 @@ public class EmailService implements IEmailService {
         return new ArrayList<>(emails.values());
     }
 
+
     @Override
     public void save(Email email) {
         Integer idAutoIcrement = (int) (Math.random() * 1000);

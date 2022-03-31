@@ -40,3 +40,30 @@
 </form:form>
 </body>
 </html>
+
+
+
+<%--            <div class="form-check form-check-inline">--%>
+<%--                <form:input path="thongTinDiLai" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"/>--%>
+<%--                <form:label path="thongTinDiLai" class="form-check-label" for="exampleRadios1">--%>
+<%--                    Tàu bay--%>
+<%--                </form:label>--%>
+<%--            </div>--%>
+<%--            <div class="form-check form-check-inline">--%>
+<%--                <form:input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">--%>
+<%--                <form:label class="form-check-label" for="exampleRadios2">--%>
+<%--                    Tàu thuyền--%>
+<%--                </form:label>--%>
+<%--            </div>--%>
+<%--            <div class="form-check form-check-inline">--%>
+<%--                <form:input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" disabled>--%>
+<%--                <form:label class="form-check-label" for="exampleRadios3">--%>
+<%--                    Ô tô--%>
+<%--                </form:label>--%>
+<%--            </div>--%>
+<%--            <div class="form-check form-check-inline">--%>
+<%--                <form:input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option3" disabled>--%>
+<%--                <form:label class="form-check-label" for="exampleRadios3">--%>
+<%--                    Khác(Ghi rõ)--%>
+<%--                </form:label>--%>
+<%--            </div>--%>

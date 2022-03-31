@@ -1,9 +1,10 @@
 package com.model;
 
 public class Medical {
+    private Integer id;
     private String hoTen;
     private String namSinh;
-    private String gioiTinh;
+    private Integer gioiTinh;
     private String quocTich;
     private String cmnd;
     private String thongTinDiLai;
@@ -22,7 +23,8 @@ public class Medical {
     public Medical() {
     }
 
-    public Medical(String hoTen, String namSinh, String gioiTinh, String quocTich, String cmnd, String thongTinDiLai, String soHieuPhuongTien, String soGhe, String ngayKhoiHanh, String ngayKetThuc, String diDauTrong14Ngay, String tinhThanh, String quanHuyen, String phuongXa, String diaChiNoiO, String dienThoai, String email) {
+    public Medical(Integer id, String hoTen, String namSinh, Integer gioiTinh, String quocTich, String cmnd, String thongTinDiLai, String soHieuPhuongTien, String soGhe, String ngayKhoiHanh, String ngayKetThuc, String diDauTrong14Ngay, String tinhThanh, String quanHuyen, String phuongXa, String diaChiNoiO, String dienThoai, String email) {
+        this.id = id;
         this.hoTen = hoTen;
         this.namSinh = namSinh;
         this.gioiTinh = gioiTinh;
@@ -42,6 +44,14 @@ public class Medical {
         this.email = email;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getHoTen() {
         return hoTen;
     }
@@ -58,11 +68,11 @@ public class Medical {
         this.namSinh = namSinh;
     }
 
-    public String getGioiTinh() {
+    public Integer getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(String gioiTinh) {
+    public void setGioiTinh(Integer gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
