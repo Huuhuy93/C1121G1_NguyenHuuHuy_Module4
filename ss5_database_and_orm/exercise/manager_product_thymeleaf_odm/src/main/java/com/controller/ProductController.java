@@ -40,7 +40,6 @@ public class ProductController {
     public String edit(@PathVariable Integer id, Model model) {
 
         model.addAttribute("productEdit", iProductService.findById(id));
-        System.out.println(iProductService.findById(id));
         return "edit";
     }
 

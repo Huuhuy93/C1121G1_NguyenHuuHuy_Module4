@@ -7,20 +7,24 @@ public class Picture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer rating;
-    private String author;
-    private String feedback;
-    private String like;
+    @Column(name = "rating_picture")
+    private Integer ratingPicture;
+    @Column(name = "author_picture")
+    private String authorPicture;
+    @Column(name = "feedback_picture")
+    private String feedbackPicture;
+    @Column(name = "like_picture")
+    private String likePicture;
 
     public Picture() {
     }
 
-    public Picture(Integer id, Integer rating, String author, String feedback, String like) {
+    public Picture(Integer id, Integer ratingPicture, String authorPicture, String feedbackPicture, String likePicture) {
         this.id = id;
-        this.rating = rating;
-        this.author = author;
-        this.feedback = feedback;
-        this.like = like;
+        this.ratingPicture = ratingPicture;
+        this.authorPicture = authorPicture;
+        this.feedbackPicture = feedbackPicture;
+        this.likePicture = likePicture;
     }
 
     public Integer getId() {
@@ -31,36 +35,35 @@ public class Picture {
         this.id = id;
     }
 
-    public Integer getRating() {
-        return rating;
+    public Integer getRatingPicture() {
+        return ratingPicture;
     }
 
-    public void setRating(Integer rating) {
-        this.rating = rating;
+    public void setRatingPicture(Integer ratingPicture) {
+        this.ratingPicture = ratingPicture;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthorPicture() {
+        return authorPicture;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthorPicture(String authorPicture) {
+        this.authorPicture = authorPicture;
     }
 
-    public String getFeedback() {
-        return feedback;
+    public String getFeedbackPicture() {
+        return feedbackPicture;
     }
 
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
+    public void setFeedbackPicture(String feedbackPicture) {
+        this.feedbackPicture = feedbackPicture;
     }
 
-    public String getLike() {
-        return like;
+    public String getLikePicture() {
+        return likePicture;
     }
 
-    public void setLike(String like) {
-        this.like = like;
+    public void setLikePicture(String likePicture) {
+        this.likePicture = likePicture;
     }
-
 }

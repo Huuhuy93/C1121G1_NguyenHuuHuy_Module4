@@ -9,7 +9,7 @@
 
 <form th:action="@{/picture/save}" method="post" th:object="${pictureCreate}" novalidate="novalidate">
 
-    <select th:field="*{rating}">
+    <select th:field="*{ratingPicture}">
         <option th:value="1">1</option>
         <option th:value="2">2</option>
         <option th:value="3">3</option>
@@ -19,11 +19,11 @@
     <br><br>
 
     <label>Author:</label><br>
-    <input th:field="*{author}">
+    <input th:field="*{authorPicture}">
     <br><br>
 
     <label>Feedback:</label><br>
-    <textarea th:field="*{feedback}"></textarea>
+    <textarea th:field="*{feedbackPicture}"></textarea>
     <br>
 
     <input type="submit" value="Comment">
