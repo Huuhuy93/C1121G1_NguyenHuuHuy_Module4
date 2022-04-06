@@ -80,7 +80,7 @@ public class BlogController {
         iBlogService.save(blog);
         ModelAndView modelAndView = new ModelAndView("/blog/edit");
         modelAndView.addObject("blog", blog);
-        modelAndView.addObject("message", "Blog updated successfully");
+        modelAndView.addObject("success", "Blog updated successfully");
         return modelAndView;
     }
 

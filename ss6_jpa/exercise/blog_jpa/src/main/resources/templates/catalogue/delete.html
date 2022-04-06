@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Delete catalogue</title>
 </head>
 <body>
-
+<h1>Delete catalogue</h1>
+<h2>Are you sure?</h2>
+<p>
+    <a href="/catalogue">Catalogue list</a>
+</p>
+<form th:action="@{/catalogue/delete-catalogue}" th:object="${catalogue}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name Catalogue:</td>
+            <td th:text="${catalogue.nameCatalogue}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Delete province"></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

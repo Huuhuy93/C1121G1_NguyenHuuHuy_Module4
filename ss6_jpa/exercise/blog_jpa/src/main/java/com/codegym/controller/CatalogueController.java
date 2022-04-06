@@ -46,7 +46,7 @@ public class CatalogueController {
         return modelAndView;
     }
 
-    @GetMapping("/edit-catalogue/{id}")
+    @GetMapping("/{id}/edit-catalogue")
     public ModelAndView showEditFormCatalogue(@PathVariable Integer id) {
         Optional<Catalogue> catalogue = iCatalogueService.findById(id);
         if (catalogue.isPresent()) {
@@ -69,7 +69,7 @@ public class CatalogueController {
         return modelAndView;
     }
 
-    @GetMapping("/delete-catalogue/{id}")
+    @GetMapping("/{id}/delete-catalogue")
     public ModelAndView showDeleteFormCatalogue(@PathVariable Integer id) {
         Optional<Catalogue> catalogue = iCatalogueService.findById(id);
         if (catalogue.isPresent()) {
@@ -86,10 +86,10 @@ public class CatalogueController {
     @PostMapping("/delete-catalogue")
     public String deleteCatalogue(@ModelAttribute("catalogue") Catalogue catalogue) {
         iCatalogueService.remove(catalogue.getId());
-        return "redirect:catalogues";
+        return "redirect:/catalogue";
     }
 
-    @GetMapping("/view-catalogue/{id}")
+    @GetMapping("/{id}/view-catalogue")
     public ModelAndView viewCatalogue(@PathVariable("id") Integer id){
         Optional<Catalogue> catalogueOptional = iCatalogueService.findById(id);
         if(!catalogueOptional.isPresent()){
