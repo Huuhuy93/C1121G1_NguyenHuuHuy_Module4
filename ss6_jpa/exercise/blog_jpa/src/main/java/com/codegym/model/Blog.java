@@ -3,6 +3,7 @@ package com.codegym.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "blogs")
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,15 +14,14 @@ public class Blog {
     private String titleBlog;
     @Column(name = "content_blog")
     private String contentBlog;
+    @Column(name = "create_time", columnDefinition = "datetime")
+    private String createTime;
+
+    @ManyToOne
+    @JoinColumn(name = "catalogue_id", referencedColumnName = "id")
+    private Catalogue catalogue;
 
     public Blog() {
-    }
-
-    public Blog(Integer id, String authorBlog, String titleBlog, String contentBlog) {
-        this.id = id;
-        this.authorBlog = authorBlog;
-        this.titleBlog = titleBlog;
-        this.contentBlog = contentBlog;
     }
 
     public Integer getId() {
@@ -54,5 +54,21 @@ public class Blog {
 
     public void setContentBlog(String contentBlog) {
         this.contentBlog = contentBlog;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public Catalogue getCatalogue() {
+        return catalogue;
+    }
+
+    public void setCatalogue(Catalogue catalogue) {
+        this.catalogue = catalogue;
     }
 }

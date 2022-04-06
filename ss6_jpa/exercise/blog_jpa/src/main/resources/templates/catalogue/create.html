@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Catalogue</title>
+</head>
+<body>
+<h1>Create Catalogue</h1>
+<p>
+    <a th:href="@{/catalogue}">Catalogue list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+
+<div id="form">
+    <form th:action="@{/catalogue/create-catalogue}" th:object="${catalogue}" method="post">
+        <table>
+            <tr>
+                <td>Name Catalogue:</td>
+                <td><input type="text" th:field="*{nameCatalogue}"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Create catalogue"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

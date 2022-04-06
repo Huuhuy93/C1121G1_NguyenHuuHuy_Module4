@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common :: head">
+    <meta charset="UTF-8">
+    <title>Catalogue</title>
+</head>
+<body>
+
+<h1>Provinces</h1>
+<!--<a href="/create-catalogue">Create new catalogue</a>-->
+<p>
+    <a th:href="@{/catalogue/create-catalogue}">
+        Add new catalogue
+    </a>
+</p>
+
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+    <div>
+        <a th:href="@{/catalogue}">
+            Back to catalogue list
+        </a>
+    </div>
+</div>
+
+<table id="blogs">
+    <tr>
+        <th>Name Catalogue</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="catalogue : ${catalogues}">
+        <tr>
+            <td th:text="${catalogue.nameCatalogue}"></td>
+            <td><a th:href="@{/edit-catalogue/${catalogue.id} }">Edit</a></td>
+            <td><a th:href="@{/delete-catalogue/${catalogue.id} }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+
+<footer th:replace="/common :: footer"></footer>
+</body>
+</html>
