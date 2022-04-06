@@ -1,6 +1,9 @@
 package com.service;
 
 import com.model.Product;
+import com.repositoy.IProductRepository;
+import com.repositoy.ProductRepositoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,64 +12,41 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ProductServiceImpl implements IProductService{
-    private static  Map<Integer, Product> productMap;
-    private static List<String> nameProductList = new ArrayList<>();
-
-    static {
-        productMap = new HashMap<>();
-        productMap.put(1, new Product(1, "Tivi", 1000.0, "Sony 4K 55 in", "Sony"));
-        productMap.put(2, new Product(2, "Điện thoại", 900.0, "Iphone 13 pro", "Iphone"));
-        productMap.put(3, new Product(3, "Điện thoại", 730.0, "Samsung Note 20", "Samsung"));
-
-        nameProductList.add("Tivi");
-        nameProductList.add("Điện thoại");
-        nameProductList.add("Tủ lạnh");
-        nameProductList.add("Máy giặt");
-
-    }
+public class ProductServiceImpl implements IProductService {
+    private IProductRepository iProductRepository = new ProductRepositoryImpl();
 
     @Override
     public List<Product> findAll() {
-        return new ArrayList<>(productMap.values());
+        return iProductRepository.findAll();
     }
 
     @Override
     public void save(Product product) {
-        productMap.put(product.getId(), product);
+        iProductRepository.save(product);
     }
 
     @Override
     public Product findById(int id) {
-        return productMap.get(id);
+        return iProductRepository.findById(id);
     }
 
     @Override
     public void update(int id, Product product) {
-        productMap.put(id, product);
+        iProductRepository.update(id, product);
     }
 
     @Override
     public void remove(int id) {
-        productMap.remove(id);
+        iProductRepository.remove(id);
     }
 
     @Override
     public List<String> findNameProduct() {
-        return nameProductList;
+        return iProductRepository.findNameProduct();
     }
 
     @Override
     public List<Product> search(String name) {
-        List<Product> productList = new ArrayList<>(productMap.values());
-//        Tạo 1 list rỗng để hứng giá trị name sau khi search ra
-        List<Product> products = new ArrayList<>();
-        for (Product product: productList) {
-            if (product.getNameProduct().contains(name)) {
-                products.add(product);
-            }
-        }
-
-        return products;
+        return iProductRepository.search(name);
     }
 }

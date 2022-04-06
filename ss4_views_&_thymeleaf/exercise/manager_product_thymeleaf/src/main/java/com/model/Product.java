@@ -1,11 +1,11 @@
 package com.model;
 
 public class Product {
-    Integer id;
-    String nameProduct;
-    Double priceProduct;
-    String descriptionProduct;
-    String producer;
+    private Integer id;
+    private String nameProduct;
+    private Double priceProduct;
+    private String descriptionProduct;
+    private String producer;
 
     public Product() {
     }
