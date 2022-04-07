@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Blog</title>
+</head>
+<body>
+<h3>Register</h3>
+
+<p>
+    <a th:href="@{/register}">
+        Back to register list
+    </a>
+</p>
+
+<div id="form">
+    <form  th:object="${registerDto}"
+          method="post">
+        <div>
+            <label>First name:</label>
+            <input type="text" th:field="*{firstName}"/>
+        </div>
+        <div style="color: rebeccapurple" th:errors="*{firstName}"></div>
+        <div>
+            <label>Last name:</label>
+            <input type="text" th:field="*{lastName}"/>
+        </div>
+        <div style="color: rebeccapurple" th:errors="*{lastName}"></div>
+        <div>
+            <label>Phone number:</label>
+            <input type="text" th:field="*{phoneNumber}"/>
+        </div>
+        <div style="color: rebeccapurple" th:errors="*{phoneNumber}"></div>
+        <div>
+            <label>Age:</label>
+            <input type="text" th:field="*{age}"/>
+        </div>
+        <div style="color: rebeccapurple" th:errors="*{age}"></div>
+        <div>
+            <label>email:</label>
+            <input type="text" th:field="*{email}"/>
+        </div>
+        <div style="color: rebeccapurple" th:errors="*{email}"></div>
+
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+
+
+</body>
+</html>
