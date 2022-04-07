@@ -5,6 +5,9 @@ import com.codegym.model.Catalogue;
 import com.codegym.service.blog.IBlogService;
 import com.codegym.service.catalogue.ICatalogueService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +32,11 @@ public class BlogController {
     }
 
     @GetMapping("")
-    public String showList(Model model) {
-        Iterable<Blog> blogList = iBlogService.findAll();
+    public String showList(@PageableDefault(value = 2) Pageable pageable, Optional<String> keywork, Model model) {
+        String keyworkValue = keywork.orElse("");
+        Page<Blog> blogList = iBlogService.findAllByAuthorBlogContaining(keyworkValue, pageable);
         model.addAttribute("blogList", blogList);
+        model.addAttribute("keyworkValue", keyworkValue);
         return "/blog/home";
     }
 

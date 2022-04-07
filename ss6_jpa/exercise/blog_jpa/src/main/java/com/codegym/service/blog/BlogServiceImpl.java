@@ -4,6 +4,8 @@ import com.codegym.model.Blog;
 import com.codegym.model.Catalogue;
 import com.codegym.repository.IBlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -44,5 +46,15 @@ public class BlogServiceImpl implements IBlogService{
     @Override
     public Iterable<Blog> findAllByCatalogue(Catalogue catalogue) {
         return iBlogRepository.findAllByCatalogue(catalogue);
+    }
+
+    @Override
+    public Page<Blog> findAll(Pageable pageable) {
+        return iBlogRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Blog> findAllByAuthorBlogContaining(String authorBlog, Pageable pageable) {
+        return iBlogRepository.findAllByAuthorBlogContaining(authorBlog, pageable);
     }
 }
