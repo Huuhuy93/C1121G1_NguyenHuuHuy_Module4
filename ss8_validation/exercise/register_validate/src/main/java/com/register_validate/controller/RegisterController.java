@@ -56,6 +56,6 @@ public class RegisterController {
         BeanUtils.copyProperties(registerDto, register);
         this.iRegisterService.save(register);
         redirectAttributes.addFlashAttribute("message", "Sucess register!!!");
-        return "redirect:/register";
+        return "result";
     }
 }

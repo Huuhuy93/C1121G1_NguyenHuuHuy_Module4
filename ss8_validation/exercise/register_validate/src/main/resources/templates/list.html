@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="/common :: head">
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<table border="1">
+<table id="blogs">
     <thead>
     <tr>
         <th>NO</th>
@@ -54,6 +54,6 @@
     <a th:href="@{'/register'(page=${registers.number + 1})}" th:if="${registers.hasNext()}">Next</a>
 </div>
 
-
+<footer th:replace="/common :: footer"></footer>
 </body>
 </html>

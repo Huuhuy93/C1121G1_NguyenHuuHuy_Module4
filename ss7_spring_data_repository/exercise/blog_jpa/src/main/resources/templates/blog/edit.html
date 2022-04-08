@@ -13,7 +13,12 @@
     </a>
 </p>
 
+
+
 <div id="form">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
     <form action="#" th:action="@{/blog/update}" th:object="${blog}"
           method="POST" novalidate="novalidate">
         <input type="hidden" th:field="*{id}"/>
@@ -28,6 +33,9 @@
         <div>
             <label>Content</label>
             <input type="text" th:field="*{contentBlog}"/>
+        </div>
+        <div>
+            <input type="hidden"  th:field="*{createTime}"/>
         </div>
 
         <div>
