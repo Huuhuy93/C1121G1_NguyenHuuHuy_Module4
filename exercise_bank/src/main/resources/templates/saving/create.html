@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common :: head">
+    <meta charset="UTF-8">
+    <title>Add Saving</title>
+</head>
+<body>
+<h3>Add Saving</h3>
+
+<p>
+    <a th:href="@{/saving}">
+        Back to blog list
+    </a>
+</p>
+
+<div id="form">
+    <form th:action="@{/saving/create}" th:object="${savingDto}"
+          method="post">
+        <input type="hidden" th:field="*{id}"/>
+
+        <div>
+            <label>Name Customer:</label>
+            <select th:field="*{customer}">
+                <option th:each="c : ${customers}" th:value="${c.id}" th:text="${c.nameCustomer}"></option>
+            </select>
+        </div>
+
+        <div>
+            <label>Start time save:</label>
+            <input type="date" th:field="*{startTimeSave}"/>
+
+        </div>
+        <div>
+            <label>Period:</label>
+            <input type="text" th:field="*{period}"/>
+            <div style="color: rebeccapurple" th:errors="*{period}"></div>
+        </div>
+        <div>
+            <label>Money save:</label>
+            <input type="text" th:field="*{moneySave}"/>
+            <div style="color: rebeccapurple" th:errors="*{moneySave}"></div>
+        </div>
+
+
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+
+<footer th:replace="/common :: footer"></footer>
+</body>
+</html>

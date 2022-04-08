@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common :: head">
+    <meta charset="UTF-8">
+    <title>Edit Saving</title>
+</head>
+<body>
+<h3>Edit Saving</h3>
+
+<p>
+    <a th:href="@{/saving}">
+        Back to saving list
+    </a>
+</p>
+
+
+
+<div id="form">
+    <div th:if="${message}">
+        <span th:text="${message}"></span>
+    </div>
+    <form action="#" th:action="@{/saving/update}" th:object="${savingDto}"
+          method="POST">
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label>Start Time Save</label>
+            <input type="date" th:field="*{startTimeSave}"/>
+        </div>
+        <div>
+            <label>Period</label>
+            <input type="text" th:field="*{period}"/>
+            <div style="color: rebeccapurple" th:errors="*{period}"></div>
+        </div>
+        <div>
+            <label>Money Save</label>
+            <input type="text" th:field="*{moneySave}"/>
+            <div style="color: rebeccapurple" th:errors="*{moneySave}"></div>
+        </div>
+
+
+        <div>
+            <label>Name Customer</label>
+            <select name="customer">
+                <option th:each="c : ${customers}"
+                        th:value="${c.id}"
+                        th:text="${c.nameCustomer}"
+                        th:selected="(${savingDto.customer}) and (${c.id} == *{customer.id})"></option>
+            </select>
+        </div>
+
+        <input type="submit" value="Edit"/>
+    </form>
+</div>
+
+<footer th:replace="/common :: footer"></footer>
+</body>
+</html>

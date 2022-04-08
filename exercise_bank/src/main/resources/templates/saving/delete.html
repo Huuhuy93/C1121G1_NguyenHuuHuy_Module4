@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common :: head"></head>
+<body>
+<h3>Remove Saving</h3>
+<p>
+    <a th:href="@{/saving}">
+        Back to saving list
+    </a>
+</p>
+<div id="form">
+    <form action="#" th:action="@{/saving/delete}" th:object="${savingDelete}"
+          method="POST" novalidate="novalidate">
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label>Start Time Save</label>
+            <input type="text" th:field="*{startTimeSave}"/>
+        </div>
+        <div>
+            <label>Period</label>
+            <input type="text" th:field="*{period}"/>
+        </div>
+        <div>
+            <label>Money Save</label>
+            <input type="text" th:field="*{moneySave}"/>
+        </div>
+
+        <input type="submit" value="Remove"/>
+    </form>
+</div>
+<footer th:replace="/common :: footer"></footer>
+</body>
+</html>
