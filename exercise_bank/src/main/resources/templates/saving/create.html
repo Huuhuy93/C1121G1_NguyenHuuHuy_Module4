@@ -21,13 +21,14 @@
         <div>
             <label>Name Customer:</label>
             <select th:field="*{customer}">
-                <option th:each="c : ${customers}" th:value="${c.id}" th:text="${c.nameCustomer}"></option>
+                <option th:each="c : ${customers}" th:value="${c.idCustomer}" th:text="${c.nameCustomer}"></option>
             </select>
         </div>
 
         <div>
             <label>Start time save:</label>
             <input type="date" th:field="*{startTimeSave}"/>
+            <div style="color: rebeccapurple" th:errors="*{startTimeSave}"></div>
 
         </div>
         <div>

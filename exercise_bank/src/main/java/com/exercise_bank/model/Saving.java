@@ -13,7 +13,7 @@ public class Saving {
     private Long moneySave;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    @JoinColumn(name = "id_customer", referencedColumnName = "id_customer")
     private Customer customer;
 
     public Saving() {

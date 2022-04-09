@@ -7,21 +7,22 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id_customer")
+    private Integer idCustomer;
     private String nameCustomer;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Saving> savings;
 
     public Customer() {
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdCustomer() {
+        return idCustomer;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCustomer(Integer idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
     public String getNameCustomer() {

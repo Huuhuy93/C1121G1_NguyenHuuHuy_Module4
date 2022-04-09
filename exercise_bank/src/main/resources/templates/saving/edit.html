@@ -42,9 +42,9 @@
             <label>Name Customer</label>
             <select name="customer">
                 <option th:each="c : ${customers}"
-                        th:value="${c.id}"
+                        th:value="${c.idCustomer}"
                         th:text="${c.nameCustomer}"
-                        th:selected="(${savingDto.customer}) and (${c.id} == *{customer.id})"></option>
+                        th:selected="(${savingDto.customer}) and (${c.idCustomer} == *{customer.idCustomer})"></option>
             </select>
         </div>
 

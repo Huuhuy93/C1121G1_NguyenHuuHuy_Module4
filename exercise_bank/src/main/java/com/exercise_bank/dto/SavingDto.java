@@ -11,12 +11,13 @@ import javax.validation.constraints.NotNull;
 
 public class SavingDto implements Validator {
     private Integer id;
-    @NotEmpty
+    @NotEmpty(message = "ngày bắt đầu gửi không được để trống!!!")
     private String startTimeSave;
     @NotNull
+    @Min(value = 1, message = "Kỳ hạn không được là số âm!!!")
     private Integer period;
     @NotNull
-    @Min(value = 30000000)
+    @Min(value = 30000000, message = "Số tiền gửi tiết kiệm không được ít hơn 30 triệu!!!")
     private Long moneySave;
 
     private Customer customer;
@@ -71,6 +72,5 @@ public class SavingDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-
     }
 }

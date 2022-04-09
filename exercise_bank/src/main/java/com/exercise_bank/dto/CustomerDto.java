@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 public class CustomerDto implements Validator {
-    private Integer id;
+    private Integer idCustomer;
     @NotBlank
     @Pattern(regexp = "^[^\\d]+$", message = "The name cannot contain number characters")
     private String nameCustomer;
@@ -15,12 +15,12 @@ public class CustomerDto implements Validator {
     public CustomerDto() {
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdCustomer() {
+        return idCustomer;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCustomer(Integer idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
     public String getNameCustomer() {
