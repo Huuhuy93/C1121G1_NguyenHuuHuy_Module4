@@ -35,4 +35,9 @@ public class BookService implements IBookService {
     public Optional<Book> findById(Integer id) {
         return iBookRepository.findById(id);
     }
+
+    @Override
+    public void borrow(Integer id) {
+        iBookRepository.borrow(id);
+    }
 }

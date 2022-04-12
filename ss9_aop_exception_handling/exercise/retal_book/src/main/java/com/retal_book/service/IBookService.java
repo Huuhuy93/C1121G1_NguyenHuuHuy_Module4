@@ -14,4 +14,6 @@ public interface IBookService {
     public void save(Book book);
 
     public Optional<Book> findById(Integer id);
+
+    public void borrow(Integer id);
 }

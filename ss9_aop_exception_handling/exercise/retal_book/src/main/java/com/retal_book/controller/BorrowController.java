@@ -56,16 +56,24 @@ public class BorrowController {
     @PostMapping("/{id}/create-borrow")
     public String saveBorrowForm(@Valid @ModelAttribute BorrowDto borrowDto,
                                BindingResult bindingResult,@PathVariable Integer id ,RedirectAttributes redirectAttributes,
-                               Model model) {
+                               Model model) throws Exception{
         if (bindingResult.hasFieldErrors()) {
             return "create_borrow";
         }
 
+        Optional<Book> book = iBookService.findById(id);
         Borrow borrow = new Borrow();
         borrow.setBook(iBookService.findById(id).get());
         BeanUtils.copyProperties(borrowDto, borrow);
 //        this.iBorrowService.save(borrow);
+//        iBookService.borrow(book.get().getIdBook());
         redirectAttributes.addFlashAttribute("message", "Success Create Borrow!!!");
         return "redirect:/book";
     }
+
+    @ExceptionHandler
+    public String showErrorPage() {
+        return "error";
+    }
+
 }

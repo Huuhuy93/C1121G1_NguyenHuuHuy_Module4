@@ -43,7 +43,7 @@ public class BookController {
     @PostMapping("/create")
     public String saveBookForm(@Valid @ModelAttribute BookDto bookDto,
                            BindingResult bindingResult, RedirectAttributes redirectAttributes,
-                           Model model) {
+                           Model model) throws Exception{
         if (bindingResult.hasFieldErrors()) {
             return "/create";
         }
