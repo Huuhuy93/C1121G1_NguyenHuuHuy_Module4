@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common :: head">
+    <meta charset="UTF-8">
+    <title>Add Book</title>
+</head>
+<body>
+<h3>Add Book</h3>
+
+<p>
+    <a th:href="@{/book}">
+        Back to blog list
+    </a>
+</p>
+
+<div id="form">
+    <form th:action="@{/book/create}" th:object="${bookDto}"
+          method="post">
+        <input type="hidden" th:field="*{idBook}"/>
+
+        <div>
+            <label>Name Book:</label>
+            <input type="text" th:field="*{nameBook}"/>
+            <div style="color: rebeccapurple" th:errors="*{nameBook}"></div>
+
+        </div>
+        <div>
+            <label>Author:</label>
+            <input type="text" th:field="*{author}"/>
+            <div style="color: rebeccapurple" th:errors="*{author}"></div>
+        </div>
+        <div>
+            <label>Quantity:</label>
+            <input type="text" th:field="*{quantity}"/>
+            <div style="color: rebeccapurple" th:errors="*{quantity}"></div>
+        </div>
+
+
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+
+<footer th:replace="/common :: footer"></footer>
+</body>
+</html>

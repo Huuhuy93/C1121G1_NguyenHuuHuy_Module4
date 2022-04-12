@@ -1,4 +1,4 @@
-package cg.wbd.grandemonstration;
+package cg.wbd.grandemonstration.config;
 
 import cg.wbd.grandemonstration.formatter.ProvinceFormatter;
 import cg.wbd.grandemonstration.service.ProvinceService;

@@ -1,5 +1,6 @@
-package cg.wbd.grandemonstration;
+package cg.wbd.grandemonstration.config;
 
+import cg.wbd.grandemonstration.config.AppConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {

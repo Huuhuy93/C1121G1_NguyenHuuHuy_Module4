@@ -46,10 +46,10 @@ public class SavingService implements ISavingService {
         return iSavingRepository.findAll(pageable);
     }
 
-    @Override
-    public Page<Saving> findAllByNameCustomer(String nameCustomer, Pageable pageable) {
-        return iSavingRepository.findAllByNameCustomer(nameCustomer, pageable);
-    }
+//    @Override
+//    public Page<Saving> findAllByNameCustomer(String nameCustomer, Pageable pageable) {
+//        return iSavingRepository.findAllByNameCustomer(nameCustomer, pageable);
+//    }
 
 
 }

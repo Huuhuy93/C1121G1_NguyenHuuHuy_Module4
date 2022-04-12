@@ -20,5 +20,5 @@ public interface ISavingService {
 
     Page<Saving> findAll(Pageable pageable);
 
-    Page<Saving> findAllByNameCustomer(String nameCustomer, Pageable pageable);
+//    Page<Saving> findAllByNameCustomer(String nameCustomer, Pageable pageable);
 }

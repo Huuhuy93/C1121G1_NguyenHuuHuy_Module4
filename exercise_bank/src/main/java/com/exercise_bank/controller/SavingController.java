@@ -35,11 +35,9 @@ public class SavingController {
     }
 
     @GetMapping("")
-    public String showList(@PageableDefault(value = 2) Pageable pageable,Optional<String> keywork, Model model) {
-        String keyworkValue = keywork.orElse("");
-        Page<Saving> savingList = iSavingService.findAllByNameCustomer(keyworkValue, pageable);
+    public String showList(@PageableDefault(value = 2) Pageable pageable, Model model) {
+        Page<Saving> savingList = iSavingService.findAll(pageable);
         model.addAttribute("savingList", savingList);
-        model.addAttribute("keyworkValue", keyworkValue);
         return "/saving/home";
     }
 

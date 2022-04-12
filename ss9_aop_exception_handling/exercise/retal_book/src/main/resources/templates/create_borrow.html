@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/common :: head">
+    <meta charset="UTF-8">
+    <title>Add Borrow</title>
+</head>
+<body>
+<h3>Add Borrow</h3>
+
+<p>
+    <a th:href="@{/borrow}">
+        Back to borrow list
+    </a>
+</p>
+
+<p>
+    <a th:href="@{/book}">
+        Back to book list
+    </a>
+</p>
+
+<div id="form">
+    <form th:object="${borrowDto}"
+          method="post">
+
+        <input type="hidden" th:field="*{book}">
+        <div>
+            <label>Name Book:</label>
+            <input type="text" th:value="${book.nameBook}"/>
+            <input type="hidden" th:value="${book.idBook}" th:field="*{book.idBook}">
+            <div style="color: rebeccapurple" th:errors="*{book.nameBook}"></div>
+        </div>
+
+        <div>
+            <label>Name Borrower:</label>
+            <input type="text" th:field="*{nameBorrower}"/>
+            <div style="color: rebeccapurple" th:errors="*{nameBorrower}"></div>
+
+        </div>
+        <div>
+            <label>Start day borrow:</label>
+            <input type="date" th:field="*{startDay}"/>
+            <div style="color: rebeccapurple" th:errors="*{startDay}"></div>
+        </div>
+        <div>
+            <label>End day borrow:</label>
+            <input type="date" th:field="*{endDay}"/>
+            <div style="color: rebeccapurple" th:errors="*{endDay}"></div>
+        </div>
+
+
+
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+
+<footer th:replace="/common :: footer"></footer>
+</body>
+</html>
