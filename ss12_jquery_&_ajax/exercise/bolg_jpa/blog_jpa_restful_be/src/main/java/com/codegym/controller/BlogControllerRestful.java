@@ -17,6 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/blogs")
+@CrossOrigin
 public class BlogControllerRestful {
     @Autowired
     ICatalogueService iCatalogueService;
@@ -24,8 +25,8 @@ public class BlogControllerRestful {
     @Autowired
     IBlogService iBlogService;
 
-    @GetMapping("list")
-    public ResponseEntity<Iterable<Blog>> findAllBlog(@PageableDefault(value = 2) Pageable pageable,
+    @GetMapping("/list")
+    public ResponseEntity<Iterable<Blog>> findAllBlog(@PageableDefault(value = 3) Pageable pageable,
                                                       @RequestParam Optional<String> keywork) {
         String keywordValue = keywork.orElse("");
 
