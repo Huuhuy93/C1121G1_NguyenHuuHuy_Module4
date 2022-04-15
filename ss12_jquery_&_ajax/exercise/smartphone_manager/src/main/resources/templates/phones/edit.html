@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Title</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            $("#btnEdit").click(function () {
+                console.log('aaaaaaaaaaa')
+                let producerVal = $("#inputProducer").val();
+                let modelVal = $("#inputModel").val();
+                let priceVal = $("#inputPrice").val();
+                let idVal = $("#idVal").val();
+
+                let smartphoneObj = {
+                    id: idVal,
+                    producer: producerVal,
+                    model: modelVal,
+                    price: priceVal,
+                };
+                console.log(smartphoneObj);
+
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    type: "PATCH",
+                    url: "/smartphones/edit/" + idVal,
+                    data: JSON.stringify(smartphoneObj),
+                    success: function (resultSuccess) {
+                        alert("Update thanh cong!");
+                        location.replace("http://localhost:8080/smartphones/list");
+                    },
+                    error: function (resultError) {
+                        alert("Update that bai!")
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<form th:object="${smartPhone}">
+    <input id="idVal" type="hidden" th:field="*{id}"/>
+    <div>
+        <label>Producer</label>
+        <input type="text" id="inputProducer" th:field="*{producer}"/>
+    </div>
+    <div>
+        <label>Model</label>
+        <input type="text" id="inputModel" th:field="*{model}"/>
+    </div>
+    <div>
+        <label>Price</label>
+        <input type="text" id="inputPrice" th:field="*{price}"/>
+    </div>
+
+    <input id="btnEdit" type="button" value="Edit"/>
+</form>
+</body>
+</html>
