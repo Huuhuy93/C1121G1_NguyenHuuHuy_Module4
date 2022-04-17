@@ -42,7 +42,7 @@
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/mdb.min.js"></script>
 <script>
-        let index = 0;
+
 
         $.ajax({
             headers: {
@@ -113,8 +113,9 @@
             });
         });
 
-
+        var page1 = 1;
         $("#btnLoad").click(function () {
+
 
             $.ajax({
                 headers: {
@@ -122,11 +123,11 @@
                     'Content-Type': 'application/json'
                 },
                 type: "GET", //GET, DELETE, PUT...
-                url: "http://localhost:8080/api/blogs/list",
+                url: "http://localhost:8080/api/blogs/list?page=" + page1++,
                 success: function (resultSuccess) {
                     let blogList = resultSuccess.content;
                     let outHTML = "";
-                    for (let i = index; i < blogList.length && i < index + 3; i++) {
+                    for (let i = 0; i < blogList.length ; i++) {
                         outHTML += `
                             <tr>
                                 <td>${i + 1}</td>
@@ -141,7 +142,6 @@
                     }
 
                     $("#bodyBlog").append(outHTML);
-                    index++;
                 },
                 error: function (resultError) {
                     alert("He thong dang bao tri!");

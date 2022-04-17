@@ -26,9 +26,9 @@ public class BlogControllerRestful {
     IBlogService iBlogService;
 
     @GetMapping("/list")
-    public ResponseEntity<Iterable<Blog>> findAllBlog(@PageableDefault(value = 3) Pageable pageable,
-                                                      @RequestParam Optional<String> keywork) {
-        String keywordValue = keywork.orElse("");
+    public ResponseEntity<Iterable<Blog>> findAllBlog(@PageableDefault(value = 2) Pageable pageable,
+                                                      @RequestParam Optional<String> keyword) {
+        String keywordValue = keyword.orElse("");
 
         Page<Blog> blogs = this.iBlogService.findAllByAuthorBlogContaining(keywordValue, pageable);
         if (blogs.isEmpty()) {
