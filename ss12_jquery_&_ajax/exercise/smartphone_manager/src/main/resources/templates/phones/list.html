@@ -60,6 +60,28 @@
             return `<tr><td >${smartphone.producer}</td><td >${smartphone.model}</td><td >${smartphone.price}</td>` +
                 `<td><a class="deleteSmartphone" href="${smartphone.id}">Delete</a></td></tr>`;
         }
+
+        $(document).ready(function () {
+            //sư kiện nào thực hiện Ajax
+            $('.deleteSmartphone').click(function (event) {
+                //lay du lieu
+                let a = $(this);
+                let smartphoneId = a.attr("href");
+                // goi ajax
+                $.ajax({
+                    type: "DELETE",
+                    //tên API
+                    url: `/smartphones/${smartphoneId}`,
+                    //xử lý khi thành công
+                    success: function (data) {
+                        a.parent().parent().remove();
+                    }
+
+                });
+                //chặn sự kiện mặc định của thẻ
+                event.preventDefault();
+            });
+        })
     </script>
 </head>
 <body>

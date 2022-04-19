@@ -10,7 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,5 +46,25 @@ public class BlogControllerRestful {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(blog, HttpStatus.OK);
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<Void> createBlog(@RequestBody Blog blog) {
+        this.iBlogService.save(blog);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Blog> updateBlog(@PathVariable("id") Integer id, @RequestBody Blog blog) {
+        Optional<Blog> blogOptional = iBlogService.findById(id);
+        if (!blogOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        blog.setId(blogOptional.get().getId());
+        Catalogue catalogue = new Catalogue();
+        catalogue.setId(blogOptional.get().getCatalogue().getId());
+        blog.setCatalogue(catalogue);
+        iBlogService.save(blog);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
