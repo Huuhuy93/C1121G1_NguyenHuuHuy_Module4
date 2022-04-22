@@ -2,6 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:utext="${title}"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -9,7 +14,69 @@
 <!-- Include _menu.html -->
 <th:block th:include="/_menu"></th:block>
 
-<h2>Message : <span th:utext="${message}"></span></h2>
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+    <form action="/blog">
+        Search by first name:
+        <input name="keywork" type="text"/>
+        <input type="submit" value="Search"/>
+    </form>
+
+
+</div>
+
+<!--Nếu muốn bắt button login ngay trang blog-->
+<a th:if="${#request.userPrincipal == null}" th:href="@{/login}">Login</a>
+<!--Nếu muốn bắt button logout ngay trang blog-->
+
+<button type="button" class="btn btn-link">
+    <a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Logout</a>
+</button>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">NO</th>
+        <th scope="col">Author</th>
+        <th scope="col">Title</th>
+        <th scope="col">Content</th>
+        <th scope="col">Create time</th>
+        <th scope="col">Catalogue</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blogObj, loop : ${blogList}">
+        <td th:text="${loop.count}"></td>
+        <td th:text="${blogObj.authorBlog}"></td>
+        <td th:text="${blogObj.titleBlog}"></td>
+        <td th:text="${blogObj.contentBlog}"></td>
+        <td th:text="${blogObj.createTime}"></td>
+
+        <td th:if="${blogObj.catalogue}" th:text="${blogObj.catalogue.nameCatalogue}"></td>
+        <td th:unless="${blogObj.catalogue}"></td>
+
+    </tr>
+
+    </tbody>
+</table>
+
+
+
+<div>
+    <a th:href="@{'/'(page=${blogList.number - 1}, keywork=${keyworkValue})}" th:if="${blogList.hasPrevious()}">Previous</a>
+    <span th:text="${blogList.number + 1}"></span>/<span th:text="${blogList.totalPages}"></span>
+    <a th:href="@{'/'(page=${blogList.number + 1}, keywork=${keyworkValue})}" th:if="${blogList.hasNext()}">Next</a>
+</div>
 
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
 </html>

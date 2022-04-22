@@ -1,9 +1,16 @@
 package com.codegym.controller;
 
 import java.security.Principal;
+import java.util.Optional;
 
 
+import com.codegym.model.Blog;
+import com.codegym.service.blog.IBlogService;
 import com.codegym.util.WebUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -13,11 +20,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
+    @Autowired
+    IBlogService iBlogService;
 
     @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
-    public String welcomePage(Model model) {
+    public String welcomePage(@PageableDefault(value = 2) Pageable pageable, Optional<String> keywork, Model model) {
         model.addAttribute("title", "Welcome");
-        model.addAttribute("message", "This is welcome page!");
+        String keyworkValue = keywork.orElse("");
+        Page<Blog> blogList = iBlogService.findAllByAuthorBlogContaining(keyworkValue, pageable);
+        model.addAttribute("blogList", blogList);
+        model.addAttribute("keyworkValue", keyworkValue);
         return "welcomePage";
     }
 

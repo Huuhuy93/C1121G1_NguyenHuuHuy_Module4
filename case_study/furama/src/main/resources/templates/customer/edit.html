@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Customer</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <h3>Update Customer</h3>
+
+    <p>
+        <a th:href="@{/customer}">
+            Back to customer list
+        </a>
+    </p>
+
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+
+
+    <form th:action="@{/customer/update}" th:object="${customerDto}"
+          method="POST">
+        <input type="hidden" th:field="*{customerId}"/>
+
+        <div class="form-group">
+            <label for="2">Customer Name</label>
+            <input type="text" th:field="*{customerName}" class="form-control" id="2">
+            <div style="color: rebeccapurple" th:errors="*{customerName}"></div>
+        </div>
+
+
+        <div class="form-row" style="display:flex; justify-content: space-between">
+            <div class="form-group col-md-4">
+                <label for="code" >Customer Code</label>
+                <input type="text" th:field="*{customerCode}" class="form-control" id="code">
+                <div style="color: rebeccapurple" th:errors="*{customerCode}"></div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="idcard" >Customer Id Card</label>
+                <input type="text" th:field="*{customerIdCard}" class="form-control" id="idcard">
+                <div style="color: rebeccapurple" th:errors="*{customerIdCard}"></div>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="phone" >Customer Phone</label>
+                <input type="text" th:field="*{customerPhone}" class="form-control" id="phone">
+                <div style="color: rebeccapurple" th:errors="*{customerPhone}"></div>
+            </div>
+        </div>
+
+
+
+        <div class="form-row" style="display:flex; justify-content: space-between">
+            <div class="form-group col-md-4">
+                <label for="inputCity" >Customer Birthday</label>
+                <input type="date" th:field="*{customerBirthday}" class="form-control" id="inputCity">
+                <div style="color: rebeccapurple" th:errors="*{customerBirthday}"></div>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label>Customer Type
+                    <select th:field="*{customerType}" class="form-control">
+                        <option th:each="c : ${customerTypes}" th:value="${c.customerTypeId}"
+                                th:text="${c.customerTypeName}">
+                        </option>
+                        <div style="color: red" th:errors="*{customerType}"></div>
+                    </select>
+                </label>
+                <small style="color: red" th:if="${#fields.hasErrors('customerType.customerTypeId')}" th:errors="*{customerType.customerTypeId}"></small>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="gender">Customer Gender</label>
+                <select type="text" class="form-control" th:field="*{customerGender}" id="gender">
+                    <option value="0">female</option>
+                    <option value="1">male</option>
+                </select>
+                <div style="color: rebeccapurple" th:errors="*{customerGender}"></div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="6">Customer Email</label>
+            <input type="text" th:field="*{customerEmail}" class="form-control" id="6">
+            <div style="color: rebeccapurple" th:errors="*{customerEmail}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail7">Customer Address</label>
+            <input type="text" th:field="*{customerAddress}" class="form-control" id="exampleInputEmail7">
+            <div style="color: rebeccapurple" th:errors="*{customerAddress}"></div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+
+</html>

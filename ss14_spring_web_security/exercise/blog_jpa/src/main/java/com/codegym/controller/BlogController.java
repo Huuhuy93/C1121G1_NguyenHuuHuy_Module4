@@ -32,7 +32,7 @@ public class BlogController {
     }
 
     @GetMapping("")
-    public String showList(@PageableDefault(value = 2) Pageable pageable, Optional<String> keywork, Model model) {
+    public String showList(@PageableDefault(value = 2) Pageable pageable, @RequestParam Optional<String> keywork, Model model) {
         String keyworkValue = keywork.orElse("");
         Page<Blog> blogList = iBlogService.findAllByAuthorBlogContaining(keyworkValue, pageable);
         model.addAttribute("blogList", blogList);
