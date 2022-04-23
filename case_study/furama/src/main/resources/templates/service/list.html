@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/layout :: body">
     <meta charset="UTF-8">
-    <title>Customer</title>
+    <title>Service</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
           integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
@@ -16,7 +16,7 @@
 <body>
 
 <div class="container">
-    <h3 style="text-align: center; color: #046056; margin-top: 15px">Employee</h3>
+    <h3 style="text-align: center; color: #046056; margin-top: 15px">Service</h3>
 
     <div class="notify">
         <div th:if="${success}">
@@ -24,30 +24,30 @@
         </div>
 
 
-<!--        search-->
-            <div class="form-outline col-4" >
-                <form action="/employee" style="display: flex; align-items: center">
-                    <input name="divisionNameSearch" type="text" id="form12" class="form-control"
-                           placeholder="Search by Division"/>
-                    <button style="margin-top: 5px" type="submit" class="btn btn-light" value="Search">Search</button>
+        <!--        search-->
+        <div class="form-outline col-4">
+            <form action="/service" style="display: flex; align-items: center">
+                <input name="nameSearch" type="text" id="form12" class="form-control"
+                       placeholder="Search by name service"/>
+                <button style="margin-top: 5px" type="submit" class="btn btn-light" value="Search">Search</button>
 
-                </form>
-            </div>
+            </form>
+        </div>
 
 
         <div class="row" style="display: flex; justify-content: space-between">
             <div class="col-3" style="margin-top: 10px; margin-bottom: 10px">
                 <button type="button" class="btn btn-light">
-                    <a th:href="@{/employee}">
-                        Back to employee list
+                    <a th:href="@{/service}">
+                        Back to service list
                     </a>
                 </button>
             </div>
 
             <div class="col-3" style="margin-top: 10px; margin-bottom: 10px; text-align: right">
                 <button type="button" class="btn btn-light">
-                    <a th:href="@{/employee/create}">
-                        Add new employee
+                    <a th:href="@{/service/create}">
+                        Add new service
                     </a>
                 </button>
             </div>
@@ -61,50 +61,47 @@
         <tr>
             <th>NO</th>
             <th>Name</th>
-            <th>Birthday</th>
-            <th>Id Card</th>
-            <th>Salary</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Position</th>
-            <th>Level</th>
-            <th>Division</th>
+            <th>Area</th>
+            <th>Cost</th>
+            <th>Max People</th>
+            <th>Standard</th>
+            <th>Convenience</th>
+            <th>PoolArea</th>
+            <th>Floors</th>
+            <th>Rent Type</th>
+            <th>Service Type</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="employeeObj, loop : ${employeePage}">
+        <tr th:each="serviceObj, loop : ${serviceFuramaPage}">
             <td th:text="${loop.count}"></td>
-            <td th:text="${employeeObj.employeeName}"></td>
-            <td th:text="${employeeObj.employeeBirthday}"></td>
-            <td th:text="${employeeObj.employeeIdCard}"></td>
-            <td th:text="${employeeObj.employeeSalary}"></td>
-            <td th:text="${employeeObj.employeePhone}"></td>
-            <td th:text="${employeeObj.employeeEmail}"></td>
-            <td th:text="${employeeObj.employeeAddress}"></td>
+            <td th:text="${serviceObj.serviceName}"></td>
+            <td th:text="${serviceObj.serviceArea}"></td>
+            <td th:text="${serviceObj.serviceCost}"></td>
+            <td th:text="${serviceObj.serviceMaxPeople}"></td>
+            <td th:text="${serviceObj.standardRoom}"></td>
+            <td th:text="${serviceObj.descriptionOtherConvenience}"></td>
+            <td th:text="${serviceObj.poolArea}"></td>
+            <td th:text="${serviceObj.numberOfFloors}"></td>
 
-            <td th:if="${employeeObj.position}" th:text="${employeeObj.position.positionName}"></td>
-            <td th:unless="${employeeObj.position}"></td>
+            <td th:if="${serviceObj.rentType}" th:text="${serviceObj.rentType.rentTypeName}"></td>
+            <td th:unless="${serviceObj.rentType}"></td>
 
-            <td th:if="${employeeObj.educationDegree}" th:text="${employeeObj.educationDegree.educationDegreeName}"></td>
-            <td th:unless="${employeeObj.educationDegree}"></td>
-
-            <td th:if="${employeeObj.division}" th:text="${employeeObj.division.divisionName}"></td>
-            <td th:unless="${employeeObj.division}"></td>
+            <td th:if="${serviceObj.serviceType}" th:text="${serviceObj.serviceType.getServiceTypeName()}"></td>
+            <td th:unless="${serviceObj.serviceType}"></td>
         </tr>
         </tbody>
     </table>
 
 
-
     <div style="margin-bottom: 10px; text-align: center">
         <button type="button" class="btn btn-light"><a
-                th:href="@{'/employee'(page=${employeePage.number - 1}, divisionNameSearch=${divisionNameValue})}"
-                th:if="${employeePage.hasPrevious()}">Previous</a></button>
-        <span th:text="${employeePage.number + 1}"></span>/<span th:text="${employeePage.totalPages}"></span>
+                th:href="@{'/service'(page=${serviceFuramaPage.number - 1}, nameSearch=${nameValue})}"
+                th:if="${serviceFuramaPage.hasPrevious()}">Previous</a></button>
+        <span th:text="${serviceFuramaPage.number + 1}"></span>/<span th:text="${serviceFuramaPage.totalPages}"></span>
         <button type="button" class="btn btn-light"><a
-                th:href="@{'/employee'(page=${employeePage.number + 1}, divisionNameSearch=${divisionNameValue})}"
-                th:if="${employeePage.hasNext()}">Next</a></button>
+                th:href="@{'/service'(page=${serviceFuramaPage.number + 1}, nameSearch=${nameValue})}"
+                th:if="${serviceFuramaPage.hasNext()}">Next</a></button>
     </div>
 </div>
 

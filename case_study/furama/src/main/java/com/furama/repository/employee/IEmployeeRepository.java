@@ -10,6 +10,5 @@ import org.springframework.data.repository.query.Param;
 public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query(value = "select * from employee inner join division on employee.division_id = division.division_id where division.division_name like concat('%',:nameDivision,'%')"
             , nativeQuery = true)
-    Page<Employee> findAllByDivision(@Param("nameDivision") String nameDivision,
-                                                              Pageable pageable);
+    Page<Employee> findAllByDivision(@Param("nameDivision") String nameDivision, Pageable pageable);
 }

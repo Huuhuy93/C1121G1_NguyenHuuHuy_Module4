@@ -165,7 +165,7 @@
         </div>
     </div>
 
-    <div>
+    <div style="margin-bottom: 10px; text-align: center">
         <button type="button" class="btn btn-light"><a
                 th:href="@{'/customer'(page=${customerList.number - 1}, customerCodeSearch=${codeValue}, customerNameSearch=${nameValue}, customerPhoneSearch=${phoneValue})}"
                 th:if="${customerList.hasPrevious()}">Previous</a></button>
