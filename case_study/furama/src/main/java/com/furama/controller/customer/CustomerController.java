@@ -35,10 +35,7 @@ public class CustomerController {
         return iCustomerTypeService.findAll();
     }
 
-    @GetMapping("/home")
-    public String homeFurama() {
-        return "/home";
-    }
+
 
     @GetMapping("")
     public String showList(@PageableDefault(value = 3) Pageable pageable, @RequestParam Optional<String> customerCodeSearch,

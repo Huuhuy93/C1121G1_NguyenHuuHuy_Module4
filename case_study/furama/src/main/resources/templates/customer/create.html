@@ -15,85 +15,91 @@
 <body>
 
 <div class="container">
-    <h3 style="text-align: center;margin-top: 10px; color: #046056">Add Customer</h3>
+    <h3 style="text-align: center;margin-top: 15px; color: #046056">Add Customer</h3>
 
-    <button type="button" class="btn btn-light"><a th:href="@{/customer}">
-        Back to customer list
-    </a></button>
+    <div style="text-align: center;margin-bottom: 20px">
+        <button type="button" class="btn btn-light"><a th:href="@{/customer}">
+            Back to customer list</a>
+        </button>
+    </div>
+
+        <form style="background-color: wheat" th:action="@{/customer/create}" th:object="${customerDto}"
+              method="post">
+            <div class="container">
+                <div class="form-group">
+                    <label for="phone">Customer Name</label>
+                    <input type="text" th:field="*{customerName}" class="form-control" placeholder="Customer Name">
+                    <div style="color: rebeccapurple" th:errors="*{customerName}"></div>
+                </div>
 
 
-    <form th:action="@{/customer/create}" th:object="${customerDto}"
-          method="post">
-        <div class="form-group">
-            <label for="phone"></label>
-            <input type="text" th:field="*{customerName}" class="form-control" placeholder="Customer Name">
-            <div style="color: rebeccapurple" th:errors="*{customerName}"></div>
-        </div>
+                <div class="form-row" style="display:flex; justify-content: space-between">
+                    <div class="form-group col-md-4">
+                        <label for="phone">Customer Code</label>
+                        <input type="text" th:field="*{customerCode}" class="form-control" placeholder="Customer Code">
+                        <div style="color: rebeccapurple" th:errors="*{customerCode}"></div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="idCard">Customer Id Card</label>
+                        <input type="text" id="idCard" th:field="*{customerIdCard}" class="form-control" placeholder="Customer Id Card">
+                        <div style="color: rebeccapurple" th:errors="*{customerIdCard}"></div>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="phone">Customer Phone</label>
+                        <input type="text" th:field="*{customerPhone}" class="form-control" id="phone" placeholder="Customer Phone">
+                        <div style="color: rebeccapurple" th:errors="*{customerPhone}"></div>
+                    </div>
+                </div>
 
 
-        <div class="form-row" style="display:flex; justify-content: space-between">
-            <div class="form-group col-md-4">
-                <label for="phone"></label>
-                <input type="text" th:field="*{customerCode}" class="form-control" placeholder="Customer Code">
-                <div style="color: rebeccapurple" th:errors="*{customerCode}"></div>
+
+                <div class="form-row" style="display:flex; justify-content: space-between">
+                    <div class="form-group col-md-4">
+                        <label for="phone">Customer Birthday</label>
+                        <input type="date" th:field="*{customerBirthday}" class="form-control" placeholder="Customer Birthday">
+                        <div style="color: rebeccapurple" th:errors="*{customerBirthday}"></div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="phone">Customer Type</label>
+                        <select id="inputState" class="form-control" th:field="*{customerType.customerTypeId}">
+                            <option th:each="c : ${customerTypeList}" th:value="${c.customerTypeId}" th:text="${c.customerTypeName}"></option>
+                        </select>
+                        <small style="color: red" th:if="${#fields.hasErrors('customerType.customerTypeId')}" th:errors="*{customerType.customerTypeId}"></small>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="phone">Customer Gender</label>
+                        <select type="text" class="form-control" th:field="*{customerGender}" id="gender">
+                            <option value="0">female</option>
+                            <option value="1">male</option>
+                        </select>
+                        <div style="color: rebeccapurple" th:errors="*{customerGender}"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="phone">Customer Email</label>
+                    <input type="text" th:field="*{customerEmail}" class="form-control" placeholder="Customer Email">
+                    <div style="color: rebeccapurple" th:errors="*{customerEmail}"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Customer Address</label>
+                    <input type="text" th:field="*{customerAddress}" class="form-control" placeholder="Customer Address">
+                    <div style="color: rebeccapurple" th:errors="*{customerAddress}"></div>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 10px">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </div>
 
-            <div class="form-group col-md-4">
-                <label></label>
-                <input type="text" th:field="*{customerIdCard}" class="form-control" placeholder="Customer Id Card">
-                <div style="color: rebeccapurple" th:errors="*{customerIdCard}"></div>
-            </div>
+        </form>
 
-            <div class="form-group col-md-3">
-                <label for="phone"></label>
-                <input type="text" th:field="*{customerPhone}" class="form-control" id="phone" placeholder="Customer Phone">
-                <div style="color: rebeccapurple" th:errors="*{customerPhone}"></div>
-            </div>
-        </div>
-
-
-
-        <div class="form-row" style="display:flex; justify-content: space-between">
-            <div class="form-group col-md-4">
-                <label for="phone"></label>
-                <input type="date" th:field="*{customerBirthday}" class="form-control" placeholder="Customer Birthday">
-                <div style="color: rebeccapurple" th:errors="*{customerBirthday}"></div>
-            </div>
-
-            <div class="form-group col-md-4">
-                <label for="phone"></label>
-                <select id="inputState" class="form-control" th:field="*{customerType.customerTypeId}">
-                    <option th:each="c : ${customerTypeList}" th:value="${c.customerTypeId}" th:text="${c.customerTypeName}"></option>
-                </select>
-                <small style="color: red" th:if="${#fields.hasErrors('customerType.customerTypeId')}" th:errors="*{customerType.customerTypeId}"></small>
-            </div>
-
-            <div class="form-group col-md-3">
-                <label for="phone"></label>
-                <select type="text" class="form-control" th:field="*{customerGender}" id="gender">
-                    <option value="0">female</option>
-                    <option value="1">male</option>
-                </select>
-                <div style="color: rebeccapurple" th:errors="*{customerGender}"></div>
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <label for="phone"></label>
-            <input type="text" th:field="*{customerEmail}" class="form-control" placeholder="Customer Email">
-            <div style="color: rebeccapurple" th:errors="*{customerEmail}"></div>
-        </div>
-
-        <div class="form-group">
-            <label for="phone"></label>
-            <input type="text" th:field="*{customerAddress}" class="form-control" placeholder="Customer Address">
-            <div style="color: rebeccapurple" th:errors="*{customerAddress}"></div>
-        </div>
-
-
-        <button style="text-align: center; margin-bottom: 10px" type="submit" class="btn btn-primary">Submit</button>
-    </form>
 </div>
 
 <footer th:replace="/layout :: footer"></footer>

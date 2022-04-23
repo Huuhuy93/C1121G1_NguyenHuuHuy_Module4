@@ -10,6 +10,7 @@ public class CustomerDto implements Validator {
     private Integer customerId;
 
     @NotBlank(message = "customer code cannot blank !")
+    @Pattern(regexp = "^KH-[\\d]{4}", message = "The code customer incorrect format !")
     private String customerCode;
 
     @NotBlank
@@ -27,9 +28,12 @@ public class CustomerDto implements Validator {
     private String customerIdCard;
 
     @NotBlank(message = "customer phone cannot blank !")
+    @Pattern(regexp = "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$",
+            message = "The phone number incorect format !")
     private String customerPhone;
 
     @Email(message = "Incorrect email format !")
+    @NotBlank
     private String customerEmail;
 
     @NotBlank(message = "customer address cannot blank !")

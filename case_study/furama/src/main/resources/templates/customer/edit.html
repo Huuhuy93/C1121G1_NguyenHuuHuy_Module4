@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="/layout :: body">
     <meta charset="UTF-8">
     <title>Update Customer</title>
 
@@ -14,13 +14,13 @@
 
 
 <div class="container">
-    <h3>Update Customer</h3>
+        <h3 style="text-align: center;margin-top: 15px; color: #046056">Update Customer</h3>
 
-    <p>
-        <a th:href="@{/customer}">
-            Back to customer list
-        </a>
-    </p>
+    <div style="text-align: center;margin-bottom: 20px">
+        <button type="button" class="btn btn-light"><a th:href="@{/customer}">
+            Back to customer list</a>
+        </button>
+    </div>
 
     <div th:if="${success}">
         <span th:text="${success}"></span>
@@ -58,34 +58,28 @@
             </div>
         </div>
 
-
-
         <div class="form-row" style="display:flex; justify-content: space-between">
             <div class="form-group col-md-4">
-                <label for="inputCity" >Customer Birthday</label>
-                <input type="date" th:field="*{customerBirthday}" class="form-control" id="inputCity">
+                <label for="birth" >Customer Birthday</label>
+                <input type="text" th:field="*{customerBirthday}" class="form-control" id="birth">
                 <div style="color: rebeccapurple" th:errors="*{customerBirthday}"></div>
             </div>
 
             <div class="form-group col-md-4">
-                <label>Customer Type
-                    <select th:field="*{customerType}" class="form-control">
-                        <option th:each="c : ${customerTypes}" th:value="${c.customerTypeId}"
-                                th:text="${c.customerTypeName}">
-                        </option>
-                        <div style="color: red" th:errors="*{customerType}"></div>
-                    </select>
-                </label>
-                <small style="color: red" th:if="${#fields.hasErrors('customerType.customerTypeId')}" th:errors="*{customerType.customerTypeId}"></small>
+                <label for="type" >Customer Type</label>
+                <select th:field="*{customerType}" id="type" class="form-control">
+                    <option th:each="c : ${customerTypes}" th:value="${c.customerTypeId}"
+                            th:text="${c.customerTypeName}">
+                    </option>
+                </select>
             </div>
 
             <div class="form-group col-md-3">
-                <label for="gender">Customer Gender</label>
-                <select type="text" class="form-control" th:field="*{customerGender}" id="gender">
+                <label for="gen" >Customer Gender</label>
+                <select type="text" class="form-control" th:field="*{customerGender}" id="gen">
                     <option value="0">female</option>
                     <option value="1">male</option>
                 </select>
-                <div style="color: rebeccapurple" th:errors="*{customerGender}"></div>
             </div>
         </div>
 
@@ -102,10 +96,13 @@
             <div style="color: rebeccapurple" th:errors="*{customerAddress}"></div>
         </div>
 
-
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div style="text-align: center; margin-bottom: 20px; margin-top: 10px">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </form>
 </div>
+    <footer th:replace="/layout :: footer"></footer>
+
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"

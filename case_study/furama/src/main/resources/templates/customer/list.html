@@ -16,21 +16,14 @@
 <body>
 
 <div class="container">
-    <h3 style="text-align: center; color: rebeccapurple">Customer</h3>
-
-
-    <!--<form method="get" th:action="@{/blog/search}">-->
-    <!--    <input type="text" name="searchName" placeholder="search by name"/>-->
-    <!--    <button>Search</button>-->
-
-    <!--</form>-->
+    <h3 style="text-align: center; color: #046056; margin-top: 15px; margin-bottom: 15px">Customer</h3>
 
     <div class="notify">
         <div th:if="${success}">
             <span th:text="${success}"></span>
         </div>
 
-        <div class="row" style="display: flex; justify-content: space-between">
+        <div class="row" style="display: flex; justify-content: space-between; flex-wrap: nowrap">
 <!--            <div class="col-4">-->
 <!--                <form action="/customer">-->
 <!--                    <input name="customerCodeSearch" type="text" placeholder="Search by Customer Code"/>-->
@@ -38,7 +31,7 @@
 <!--                </form>-->
 <!--            </div>-->
             <div class="form-outline col-4">
-                <form action="/customer">
+                <form action="/customer" style="display: flex; align-items:center">
                     <input name="customerCodeSearch" type="text" id="form12" class="form-control"
                            placeholder="Search by Customer Code"/>
 <!--                    <input type="submit" value="Search"/>-->
@@ -47,7 +40,7 @@
                 </form>
             </div>
             <div class="form-outline col-4">
-                <form action="/customer">
+                <form action="/customer" style="display: flex; align-items:center">
                     <input name="customerNameSearch" type="text" id="form2" class="form-control"
                            placeholder="Search by Customer Name"/>
                     <button style="margin-top: 5px" type="submit" class="btn btn-light" value="Search">Search</button>
@@ -55,7 +48,7 @@
                 </form>
             </div>
             <div class="form-outline col-4">
-                <form action="/customer">
+                <form action="/customer" style="display: flex; align-items:center">
                     <input name="customerPhoneSearch" type="text" id="form3" class="form-control"
                            placeholder="Search by Customer Phone"/>
                     <button style="margin-top: 5px" type="submit" class="btn btn-light" value="Search">Search</button>
@@ -63,19 +56,7 @@
                 </form>
             </div>
 
-<!--            <div class="col-4" style="text-align: center">-->
-<!--                <form action="/customer">-->
-<!--                    <input name="customerNameSearch" type="text" placeholder="Search by Customer Name"/>-->
-<!--                    <input type="submit" value="Search"/>-->
-<!--                </form>-->
-<!--            </div>-->
 
-<!--            <div class="col-4" style="text-align: right">-->
-<!--                <form action="/customer">-->
-<!--                    <input name="customerPhoneSearch" type="text" placeholder="Search by Customer Phone"/>-->
-<!--                    <input type="submit" value="Search"/>-->
-<!--                </form>-->
-<!--            </div>-->
         </div>
 
         <div class="row" style="display: flex; justify-content: space-between">
