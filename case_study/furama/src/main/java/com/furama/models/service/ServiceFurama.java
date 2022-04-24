@@ -1,11 +1,16 @@
 package com.furama.models.service;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.furama.models.contract.Contract;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class ServiceFurama {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "service_id")
     private Integer serviceId;
     private String serviceName;
     private Integer serviceArea;
@@ -23,6 +28,10 @@ public class ServiceFurama {
     @ManyToOne
     @JoinColumn(name = "service_type_id", referencedColumnName = "service_type_id")
     private ServiceType serviceType;
+
+    @OneToMany(mappedBy = "serviceFurama")
+    @JsonBackReference
+    private Set<Contract> contractSet;
 
     public ServiceFurama() {
     }
@@ -113,5 +122,13 @@ public class ServiceFurama {
 
     public void setServiceType(ServiceType serviceType) {
         this.serviceType = serviceType;
+    }
+
+    public Set<Contract> getContractSet() {
+        return contractSet;
+    }
+
+    public void setContractSet(Set<Contract> contractSet) {
+        this.contractSet = contractSet;
     }
 }

@@ -1,13 +1,17 @@
 package com.furama.models.employee;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.furama.models.contract.Contract;
 import com.furama.models.customer.CustomerType;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "employee_id")
     private Integer employeeId;
     private String employeeName;
     private String employeeBirthday;
@@ -28,6 +32,10 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "position_id", referencedColumnName = "position_id")
     private Position position;
+
+    @OneToMany(mappedBy = "employee")
+    @JsonBackReference
+    private Set<Contract> contractSet;
 
     public Employee() {
     }
@@ -116,7 +124,16 @@ public class Employee {
         return position;
     }
 
+
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public Set<Contract> getContractSet() {
+        return contractSet;
+    }
+
+    public void setContractSet(Set<Contract> contractSet) {
+        this.contractSet = contractSet;
     }
 }

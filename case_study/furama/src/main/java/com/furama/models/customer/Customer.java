@@ -1,11 +1,16 @@
 package com.furama.models.customer;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.furama.models.contract.Contract;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customer_id")
     private Integer customerId;
     private String customerCode;
     private String customerName;
@@ -19,6 +24,11 @@ public class Customer {
     @ManyToOne
     @JoinColumn(name = "customer_type_id", referencedColumnName = "customer_type_id")
     private CustomerType customerType;
+
+    @OneToMany(mappedBy = "customer")
+    @JsonBackReference
+    private Set<Contract> contractSet;
+
 
     public Customer() {
     }
@@ -101,5 +111,13 @@ public class Customer {
 
     public void setCustomerType(CustomerType customerType) {
         this.customerType = customerType;
+    }
+
+    public Set<Contract> getContractSet() {
+        return contractSet;
+    }
+
+    public void setContractSet(Set<Contract> contractSet) {
+        this.contractSet = contractSet;
     }
 }
