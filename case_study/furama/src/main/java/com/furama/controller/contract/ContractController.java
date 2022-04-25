@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -104,4 +105,12 @@ public class ContractController {
         redirectAttributes.addFlashAttribute("success", "Success Create Contract!!!");
         return "redirect:/contract";
     }
+
+//    @GetMapping(value = "customerUseService")
+//    public ModelAndView customerUserService(@PageableDefault(value = 2) Pageable pageable){
+//        ModelAndView modelAndView =new ModelAndView("/customer/customerUseService");
+//        Page<Contract> contractPageList = iContractService.findAll(pageable);
+//        modelAndView.addObject("contractPageList", contractPageList);
+//        return modelAndView;
+//    }
 }

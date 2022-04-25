@@ -9,6 +9,7 @@ import com.furama.services.contract_detail.IContractDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,6 +43,14 @@ public class ContractDetailController {
         Page<ContractDetail> contractDetailPage = iContractDetailService.findAll(pageable);
         ModelAndView modelAndView = new ModelAndView("/contract_detail/list");
         modelAndView.addObject("contractDetailPage", contractDetailPage);
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/customerUseService")
+    public ModelAndView customerUserService(@PageableDefault(value = 2) Pageable pageable){
+        ModelAndView modelAndView =new ModelAndView("/customer/customerUseService");
+        Page<ContractDetail> contractDetailPageList = iContractDetailService.findAll(pageable);
+        modelAndView.addObject("contractDetailPageList", contractDetailPageList);
         return modelAndView;
     }
 }
