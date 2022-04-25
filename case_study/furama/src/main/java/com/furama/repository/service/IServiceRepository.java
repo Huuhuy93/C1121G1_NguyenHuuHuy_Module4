@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface IServiceRepository extends JpaRepository<ServiceFurama, Integer> {
-    @Query(value = "select * from service where service_name like concat('%',:name,'%') ", nativeQuery = true)
+    @Query(value = "select * from service_furama where service_name like concat('%',:name,'%') ", nativeQuery = true)
     Page<ServiceFurama> findAllByServiceName(@Param("name") String name, Pageable pageable);
 }

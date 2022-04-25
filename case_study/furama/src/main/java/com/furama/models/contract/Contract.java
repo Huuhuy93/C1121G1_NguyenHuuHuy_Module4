@@ -1,10 +1,12 @@
 package com.furama.models.contract;
 
+import com.furama.models.contract_detail.ContractDetail;
 import com.furama.models.customer.Customer;
 import com.furama.models.employee.Employee;
 import com.furama.models.service.ServiceFurama;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Contract {
@@ -28,6 +30,9 @@ public class Contract {
     @ManyToOne
     @JoinColumn(name = "service_id", referencedColumnName = "service_id")
     private ServiceFurama serviceFurama;
+
+    @OneToMany(mappedBy = "contract", cascade = CascadeType.ALL)
+    private Set<ContractDetail> contractDetails;
 
     public Contract() {
     }
@@ -94,5 +99,13 @@ public class Contract {
 
     public void setServiceFurama(ServiceFurama serviceFurama) {
         this.serviceFurama = serviceFurama;
+    }
+
+    public Set<ContractDetail> getContractDetails() {
+        return contractDetails;
+    }
+
+    public void setContractDetails(Set<ContractDetail> contractDetails) {
+        this.contractDetails = contractDetails;
     }
 }

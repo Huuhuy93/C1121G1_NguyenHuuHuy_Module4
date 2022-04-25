@@ -112,7 +112,7 @@
                 <div class="form-outline">
                     <label class="form-label" for="serviceType">Service type</label>
                     <select class="form-control" id="serviceType" th:field="*{serviceType.serviceTypeId}">
-                        <option th:each="s : ${serviceTypeList}" th:value="${s.getServiceTypeId()}"
+                        <option th:each="s : ${serviceTypeList}" th:value="${s.serviceTypeId}"
                                 th:text="${s.getServiceTypeName()}"></option>
                     </select>
                 </div>

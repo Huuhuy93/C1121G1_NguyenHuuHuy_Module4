@@ -12,10 +12,10 @@ public class ContractDto {
     private String contractStartDate;
     @NotBlank(message = "cannot blank !")
     private String contractEndDate;
-    @NotBlank(message = "cannot blank !")
-    private String contractDeposit;
-    @NotBlank(message = "cannot blank !")
-    private String contractTotalMoney;
+
+    private Double contractDeposit;
+
+    private Double contractTotalMoney;
     private Employee employee;
     private Customer customer;
     private ServiceFurama serviceFurama;
@@ -47,19 +47,19 @@ public class ContractDto {
         this.contractEndDate = contractEndDate;
     }
 
-    public String getContractDeposit() {
+    public Double getContractDeposit() {
         return contractDeposit;
     }
 
-    public void setContractDeposit(String contractDeposit) {
+    public void setContractDeposit(Double contractDeposit) {
         this.contractDeposit = contractDeposit;
     }
 
-    public String getContractTotalMoney() {
+    public Double getContractTotalMoney() {
         return contractTotalMoney;
     }
 
-    public void setContractTotalMoney(String contractTotalMoney) {
+    public void setContractTotalMoney(Double contractTotalMoney) {
         this.contractTotalMoney = contractTotalMoney;
     }
 
