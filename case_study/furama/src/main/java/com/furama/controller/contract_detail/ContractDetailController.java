@@ -46,11 +46,11 @@ public class ContractDetailController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/customerUseService")
-    public ModelAndView customerUserService(@PageableDefault(value = 2) Pageable pageable){
-        ModelAndView modelAndView =new ModelAndView("/customer/customerUseService");
-        Page<ContractDetail> contractDetailPageList = iContractDetailService.findAll(pageable);
-        modelAndView.addObject("contractDetailPageList", contractDetailPageList);
-        return modelAndView;
-    }
+//    @GetMapping(value = "/customerUseService")
+//    public ModelAndView customerUserService(@PageableDefault(value = 2) Pageable pageable){
+//        ModelAndView modelAndView =new ModelAndView("/customer/customerUseService");
+//        Page<ContractDetail> contractDetailPageList = iContractDetailService.findAll(pageable);
+//        modelAndView.addObject("contractDetailPageList", contractDetailPageList);
+//        return modelAndView;
+//    }
 }

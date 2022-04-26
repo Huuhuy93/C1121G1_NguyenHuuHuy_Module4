@@ -3,17 +3,20 @@ package com.furama.controller.customer;
 import com.furama.dto.customer.CustomerDto;
 import com.furama.models.customer.Customer;
 import com.furama.models.customer.CustomerType;
+import com.furama.repository.ICustomerUseService;
 import com.furama.services.customer.ICustomerService;
 import com.furama.services.customer.ICustomerTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -113,5 +116,11 @@ public class CustomerController {
     public String deleteForm(@RequestParam("id")Integer id) {
         iCustomerService.remove(id);
         return "redirect:/customer";
+    }
+
+    @GetMapping("/customerUseService")
+    public ModelAndView showCustomerUseService(Pageable pageable) {
+        Page<ICustomerUseService> iCustomerUseServicePage = iCustomerService.findAllCustomerUseService(PageRequest.of(pageable.getPageNumber(), 3));
+        return new ModelAndView("/customer/customerUseService", "customerUseList", iCustomerUseServicePage);
     }
 }

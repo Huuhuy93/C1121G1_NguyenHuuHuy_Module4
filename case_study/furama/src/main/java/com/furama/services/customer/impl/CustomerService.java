@@ -1,6 +1,7 @@
 package com.furama.services.customer.impl;
 
 import com.furama.models.customer.Customer;
+import com.furama.repository.ICustomerUseService;
 import com.furama.repository.customer.ICustomerRepository;
 import com.furama.services.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,11 @@ public class CustomerService implements ICustomerService {
     @Override
     public Page<Customer> findAllByCodeAndNameAndPhoneContaining(String code, String name, String phone, Pageable pageable) {
         return iCustomerRepository.findAllByCodeAndNameAndPhoneContaining(code, name, phone, pageable);
+    }
+
+    @Override
+    public Page<ICustomerUseService> findAllCustomerUseService(Pageable pageable) {
+        return iCustomerRepository.findAllCustomerUseService(ICustomerUseService.class, pageable);
     }
 
 

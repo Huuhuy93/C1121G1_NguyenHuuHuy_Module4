@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/layout :: body">
     <meta charset="UTF-8">
-    <title>Customer</title>
+    <title>Customer use service</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
           integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
@@ -43,18 +43,33 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="contractObj, loop : ${contractDetailPageList}">
+<!--        <tr th:each="contractObj, loop : ${contractDetailPageList}">-->
+<!--            <td th:text="${loop.count}"></td>-->
+<!--            <td th:text="${contractObj.contract.customer.customerCode}"></td>-->
+<!--            <td th:text="${contractObj.contract.customer.customerName}"></td>-->
+<!--            <td th:text="${contractObj.contract.customer.customerIdCard}"></td>-->
+<!--            <td th:text="${contractObj.contract.customer.customerPhone}"></td>-->
+<!--            <td th:text="${contractObj.contract.customer.customerEmail}"></td>-->
+<!--            <td th:text="${contractObj.contract.serviceFurama.serviceName}"></td>-->
+<!--            <td th:text="${contractObj.contract.contractStartDate}"></td>-->
+<!--            <td th:text="${contractObj.contract.contractEndDate}"></td>-->
+<!--            <td th:text="${contractObj.attachService.attachServiceName}"></td>-->
+<!--            <td th:text="${contractObj.contract.contractTotalMoney}"></td>-->
+<!--        </tr>-->
+
+        <tr th:each="useObi, loop : ${customerUseList}">
             <td th:text="${loop.count}"></td>
-            <td th:text="${contractObj.contract.customer.customerCode}"></td>
-            <td th:text="${contractObj.contract.customer.customerName}"></td>
-            <td th:text="${contractObj.contract.customer.customerIdCard}"></td>
-            <td th:text="${contractObj.contract.customer.customerPhone}"></td>
-            <td th:text="${contractObj.contract.customer.customerEmail}"></td>
-            <td th:text="${contractObj.contract.serviceFurama.serviceName}"></td>
-            <td th:text="${contractObj.contract.contractStartDate}"></td>
-            <td th:text="${contractObj.contract.contractEndDate}"></td>
-            <td th:text="${contractObj.attachService.attachServiceName}"></td>
-            <td th:text="${contractObj.contract.contractTotalMoney}"></td>
+            <td th:text="${useObi.customerCode}"></td>
+            <td th:text="${useObi.customerName}"></td>
+            <td th:text="${useObi.customerIdCard}"></td>
+            <td th:text="${useObi.customerPhone}"></td>
+            <td th:text="${useObi.customerEmail}"></td>
+            <td th:text="${useObi.serviceName}"></td>
+            <td th:text="${useObi.contractStartDate}"></td>
+            <td th:text="${useObi.contractEndDate}"></td>
+            <td th:text="${useObi.attachServiceName}"></td>
+            <td th:text="${useObi.total}"></td>
+
         </tr>
         </tbody>
     </table>
@@ -62,12 +77,12 @@
 
 
     <button type="button" class="btn btn-light"><a
-            th:href="@{'/customer'(page=${contractDetailPageList.number - 1})}"
-            th:if="${contractDetailPageList.hasPrevious()}">Previous</a></button>
-    <span th:text="${contractDetailPageList.number + 1}"></span>/<span th:text="${contractDetailPageList.totalPages}"></span>
+            th:href="@{'/customer/customerUseService'(page=${customerUseList.number - 1})}"
+            th:if="${customerUseList.hasPrevious()}">Previous</a></button>
+    <span th:text="${customerUseList.number + 1}"></span>/<span th:text="${customerUseList.totalPages}"></span>
     <button type="button" class="btn btn-light"><a
-            th:href="@{'/customer'(page=${contractDetailPageList.number + 1})}"
-            th:if="${contractDetailPageList.hasNext()}">Next</a></button>
+            th:href="@{'/customer/customerUseService'(page=${customerUseList.number + 1})}"
+            th:if="${customerUseList.hasNext()}">Next</a></button>
 </div>
 
 <footer th:replace="/layout :: footer"></footer>
